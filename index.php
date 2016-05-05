@@ -12,17 +12,20 @@ $PAGE->set_heading($strheading);
 $PAGE->navbar->add(get_string('pluginname', 'tool_sessionbreaker'), $PAGE->url);
 
 require_login();
-
 require_capability('moodle/site:config', context_system::instance());
-
 
 echo $OUTPUT->header();
 
 // echo "<p>The session_handler_class is " . $CFG->session_handler_class . "</p>";
 
-$SESSION->foo = 0;
+echo "<p>This loads a bunch of iframes in parallel which all mess with the same session attribute.
+If session locking is working then this these are forced to queue and process one at a time, and then
+last iframe to load should 'end' with 10.</p>
+<p>If any iframes have the have the same number then locking is busted</p>";
 
-for ($c=0; $c<10; $c++) {
+$SESSION->count = 0;
+
+for ($c=1; $c<=10; $c++) {
 
     echo "<p>Frame $c: ";
     echo "<iframe src='count.php?c=$c' style='height: 30px;'></iframe>";
@@ -32,5 +35,4 @@ for ($c=0; $c<10; $c++) {
 }
 
 echo $OUTPUT->footer();
-
 
