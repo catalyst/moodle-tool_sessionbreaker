@@ -19,15 +19,18 @@ echo $OUTPUT->header();
 ?>
 
 <p>This demonstrates a 'bad' script which locks the session and doesn't release it,
-and a victim script which is delayed because of it.
+and several victim scripts which are delayed because of it.
 
-<iframe src='bad.php' style='height: 50px; width: 100%'></iframe>
+<iframe src='bad.php' style='height: 70px; width: 100%'></iframe>
 
-<?php
-usleep(200000); // Enough to mostly mean the iframes load in order (not required but easier to read).
-
-?>
-<iframe src='good.php' style='height: 50px; width: 100%'></iframe>
+<?php usleep(200000); ?>
+<iframe src='good.php?id=1' style='height: 70px; width: 100%'></iframe>
+<?php usleep(200000); ?>
+<iframe src='good.php?id=2' style='height: 70px; width: 100%'></iframe>
+<?php usleep(200000); ?>
+<iframe src='good.php?id=3' style='height: 70px; width: 100%'></iframe>
+<?php usleep(200000); ?>
+<iframe src='good.php?id=4' style='height: 70px; width: 100%'></iframe>
 
 <?php
 
