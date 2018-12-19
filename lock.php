@@ -14,6 +14,9 @@ $PAGE->navbar->add($strheading, $PAGE->url);
 require_login();
 require_capability('moodle/site:config', context_system::instance());
 
+// We need to close this so that the iframe's get pushed out incrementally
+// so they load in the correct order.
+\core\session\manager::write_close();
 echo $OUTPUT->header();
 
 ?>
@@ -22,15 +25,15 @@ echo $OUTPUT->header();
 and several victim scripts which are delayed because of it.
 
 <iframe src='good.php' style='height: 70px; width: 100%'></iframe>
-<?php usleep(200000); ?>
+<?php usleep(200 * 1000); ?>
 <iframe src='bad.php' style='height: 70px; width: 100%'></iframe>
-<?php usleep(200000); ?>
+<?php usleep(200 * 1000); ?>
 <iframe src='good.php?id=1' style='height: 70px; width: 100%'></iframe>
-<?php usleep(200000); ?>
+<?php usleep(200 * 1000); ?>
 <iframe src='good.php?id=2' style='height: 70px; width: 100%'></iframe>
-<?php usleep(200000); ?>
+<?php usleep(200 * 1000); ?>
 <iframe src='good.php?id=3' style='height: 70px; width: 100%'></iframe>
-<?php usleep(200000); ?>
+<?php usleep(200 * 1000); ?>
 <iframe src='good.php?id=4' style='height: 70px; width: 100%'></iframe>
 
 <?php
