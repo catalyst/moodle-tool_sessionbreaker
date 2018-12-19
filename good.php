@@ -11,10 +11,13 @@ $PAGE->set_title($strheading);
 $PAGE->set_heading($strheading);
 $PAGE->navbar->add($strheading, $PAGE->url);
 
-$wait = isset($_GET['wait']) ? $_GET['wait'] : 10;
-
 echo $OUTPUT->header();
 
-echo "I am good but am the victim of ...";
+\core\session\manager::write_close();
+usleep(300000);
+echo "I am good, I am a litte slow but I unlock the session.";
+
+// TODO make this conditional
+echo "But I had to wait for ...";
 
 echo $OUTPUT->footer();

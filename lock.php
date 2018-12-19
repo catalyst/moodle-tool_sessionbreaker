@@ -21,8 +21,9 @@ echo $OUTPUT->header();
 <p>This demonstrates a 'bad' script which locks the session and doesn't release it,
 and several victim scripts which are delayed because of it.
 
+<iframe src='good.php' style='height: 70px; width: 100%'></iframe>
+<?php usleep(200000); ?>
 <iframe src='bad.php' style='height: 70px; width: 100%'></iframe>
-
 <?php usleep(200000); ?>
 <iframe src='good.php?id=1' style='height: 70px; width: 100%'></iframe>
 <?php usleep(200000); ?>
