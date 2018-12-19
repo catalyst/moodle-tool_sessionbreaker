@@ -3,7 +3,7 @@
 define('NO_OUTPUT_BUFFERING', true);
 require_once(dirname(__FILE__) . '/../../../config.php');
 
-$PAGE->set_url('/admin/tool/sessionbreaker/index.php');
+$PAGE->set_url('/admin/tool/sessionbreaker/lock.php');
 $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('admin');
 $strheading = 'Session blocking';
