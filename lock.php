@@ -23,12 +23,12 @@ echo $OUTPUT->header();
 <p>This demonstrates a 'bad' script which locks the session and doesn't release it right away,
 and several victim scripts which are delayed because of it.
 
-<iframe src='good.php'      style='height: 170px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
-<iframe src='bad.php'       style='height: 170px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
-<iframe src='good.php?id=1' style='height: 170px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
-<iframe src='good.php?id=2' style='height: 170px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
-<iframe src='good.php?id=3' style='height: 170px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
-<iframe src='good.php?id=4' style='height: 170px; width: 100%'></iframe>
+<iframe src='good.php'       style='height: 80px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
+<iframe src='bad.php?wait=4' style='height: 80px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
+<iframe src='good.php?id=1'  style='height: 80px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
+<iframe src='good.php?id=2'  style='height: 80px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
+<iframe src='good.php?id=3'  style='height: 80px; width: 100%'></iframe><?php usleep(200 * 1000); ?>
+<iframe src='good.php?id=4'  style='height: 80px; width: 100%'></iframe>
 <?php
 
 echo $OUTPUT->footer();

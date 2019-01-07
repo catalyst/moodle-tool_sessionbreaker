@@ -14,9 +14,9 @@ $PAGE->navbar->add($strheading, $PAGE->url);
 echo $OUTPUT->header();
 
 \core\session\manager::write_close();
-usleep(300000);
-echo "I am good, I am a litte slow but I unlock the session.";
+$slow = 300;
+usleep($slow * 1000);
+echo "I am good, I am a litte slow ($slow ms) but I unlock the session before the slow bits.";
 // TODO make this conditional
-echo "But I had to wait for ...";
 echo \core\session\manager::display_blocking_page();
 echo $OUTPUT->footer();
