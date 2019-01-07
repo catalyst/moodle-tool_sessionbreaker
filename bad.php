@@ -16,6 +16,6 @@ $wait = isset($_GET['wait']) ? $_GET['wait'] : 10;
 echo $OUTPUT->header();
 echo "I am bad and block the session for $wait seconds";
 sleep($wait);
-
+echo \core\session\manager::display_blocking_page();
 
 echo $OUTPUT->footer();

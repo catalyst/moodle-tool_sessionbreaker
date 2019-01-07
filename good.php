@@ -16,8 +16,7 @@ echo $OUTPUT->header();
 \core\session\manager::write_close();
 usleep(300000);
 echo "I am good, I am a litte slow but I unlock the session.";
-
 // TODO make this conditional
 echo "But I had to wait for ...";
-
+echo \core\session\manager::display_blocking_page();
 echo $OUTPUT->footer();
