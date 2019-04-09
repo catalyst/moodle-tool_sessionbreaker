@@ -17,6 +17,8 @@ echo $OUTPUT->header();
 $slow = 300;
 usleep($slow * 1000);
 echo "I am good, I am a litte slow ($slow ms) but I unlock the session before the slow bits.";
-// TODO make this conditional
-echo \core\session\manager::display_blocking_page();
+$manager = new \core\session\manager();
+if (method_exists($manager, 'display_blocking_page')) {
+    echo $manager->display_blocking_page();
+}
 echo $OUTPUT->footer();
