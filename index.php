@@ -14,6 +14,9 @@ $PAGE->navbar->add(get_string('pluginname', 'tool_sessionbreaker'), $PAGE->url);
 require_login();
 require_capability('moodle/site:config', context_system::instance());
 
+cache::make('core', 'tagindexbuilder')->set('count', 0);
+\core\session\manager::write_close();
+
 echo $OUTPUT->header();
 
 // echo "<p>The session_handler_class is " . $CFG->session_handler_class . "</p>";
@@ -23,14 +26,12 @@ If session locking is working then this these are forced to queue and process on
 last iframe to load should 'end' with 10.</p>
 <p>If any iframes have the have the same number then locking is busted</p>";
 
-$SESSION->count = 0;
-
-for ($c=1; $c<=10; $c++) {
+for ($c=1; $c<=20; $c++) {
 
     echo "<p>Frame $c: ";
     echo "<iframe src='count.php?c=$c' style='height: 30px;'></iframe>";
 
-    usleep(200000); // Enough to mostly mean the iframes load in order (not required but easier to read).
+    usleep(100 * 1000); // Enough to mostly mean the iframes load in order (not required but easier to read).
 
 }
 
