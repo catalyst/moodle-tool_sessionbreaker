@@ -3,6 +3,10 @@
 define('NO_OUTPUT_BUFFERING', true);
 require_once(dirname(__FILE__) . '/../../../config.php');
 
+$count = optional_param('count', 20, PARAM_INT);
+$delay = optional_param('delay', 100, PARAM_INT);
+$countdelay = optional_param('countdelay', 500, PARAM_INT);
+
 $PAGE->set_url('/admin/tool/sessionbreaker/index.php');
 $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('admin');
@@ -26,12 +30,12 @@ If session locking is working then this these are forced to queue and process on
 last iframe to load should 'end' with 10.</p>
 <p>If any iframes have the have the same number then locking is busted</p>";
 
-for ($c=1; $c<=20; $c++) {
+for ($c=1; $c<=$count; $c++) {
 
     echo "<p>Frame $c: ";
-    echo "<iframe src='count.php?c=$c' style='height: 30px;'></iframe>";
+    echo "<iframe src='count.php?c=$c&delay=$countdelay' style='height: 30px;'></iframe>";
 
-    usleep(100 * 1000); // Enough to mostly mean the iframes load in order (not required but easier to read).
+    usleep($delay * 1000); // Enough to mostly mean the iframes load in order (not required but easier to read).
 
 }
 
