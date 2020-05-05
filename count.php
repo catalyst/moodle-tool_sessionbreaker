@@ -1,5 +1,6 @@
 <?php
 
+define('NO_OUTPUT_BUFFERING', true);
 define('REQUIRE_SESSION_LOCK', false);
 
 require_once(dirname(__FILE__) . '/../../../config.php');
@@ -7,6 +8,9 @@ require_once(dirname(__FILE__) . '/../../../config.php');
 $delay = optional_param('delay', 500, PARAM_INT);
 
 require_login();
+
+// This forces the dev tools to start showing the TTFB vs the 'Content download' parts of the request.
+echo " ";
 
 $current = cache::make('core', 'tagindexbuilder')->get('count');
 $current++;
