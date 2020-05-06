@@ -1,7 +1,12 @@
 <?php
 
 define('NO_OUTPUT_BUFFERING', true);
-define('REQUIRE_SESSION_LOCK', false);
+
+// If you want to test using readonly cookies use index.php?readonly=1
+// This should log debug errors when on as we do attempt to change the session.
+if (isset($_GET['readonly']) && $_GET['readonly'] == 1) {
+    define('READ_ONLY_SESSION', true);
+}
 
 require_once(dirname(__FILE__) . '/../../../config.php');
 

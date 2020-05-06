@@ -6,6 +6,7 @@ require_once(dirname(__FILE__) . '/../../../config.php');
 $count = optional_param('count', 20, PARAM_INT);
 $delay = optional_param('delay', 100, PARAM_INT);
 $countdelay = optional_param('countdelay', 500, PARAM_INT);
+$readonly = optional_param('readonly', false, PARAM_BOOL);
 
 $PAGE->set_url('/admin/tool/sessionbreaker/index.php');
 $PAGE->set_context(context_system::instance());
@@ -27,13 +28,13 @@ echo $OUTPUT->header();
 
 echo "<p>This loads a bunch of iframes in parallel which all mess with the same session attribute.
 If session locking is working then this these are forced to queue and process one at a time, and then
-last iframe to load should 'end' with 10.</p>
+last iframe to load should 'end' with $count .</p>
 <p>If any iframes have the have the same number then locking is busted</p>";
 
 for ($c=1; $c<=$count; $c++) {
 
     echo "<p>Frame $c: ";
-    echo "<iframe src='count.php?c=$c&delay=$countdelay' style='height: 30px;'></iframe>";
+    echo "<iframe src='count.php?c=$c&delay=$countdelay&readonly=$readonly' style='height: 30px;'></iframe>";
 
     usleep($delay * 1000); // Enough to mostly mean the iframes load in order (not required but easier to read).
 
