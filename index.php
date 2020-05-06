@@ -29,7 +29,7 @@ echo $OUTPUT->header();
 echo "<p>This loads a bunch of iframes in parallel which all mess with the same session attribute.
 If session locking is working then this these are forced to queue and process one at a time, and then
 last iframe to load should 'end' with $count .</p>
-<p>If any iframes have the have the same number then locking is busted</p>";
+<p>If any iframes have the have the same number then session locking is busted (or turned off via readonly sessions)</p>";
 
 for ($c=1; $c<=$count; $c++) {
 
