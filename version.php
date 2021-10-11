@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015111600;
+$plugin->version   = 2021101101;
 $plugin->requires  = 2015111000;
 $plugin->component = 'tool_sessionbreaker';
 
