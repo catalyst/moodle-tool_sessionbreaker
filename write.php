@@ -1,6 +1,7 @@
 <?php
 
 define('NO_OUTPUT_BUFFERING', true);
+// define('AJAX_SCRIPT', true);
 
 require_once(dirname(__FILE__) . '/../../../config.php');
 
@@ -19,11 +20,14 @@ $attr = "var$c";
 
 usleep($delay * 1000); // Enough delay to expose race conditions on this muc item
 
+
 if (isset($SESSION->$attr)) {
+    echo " $attr was " . $SESSION->$attr;
     $SESSION->$attr = $SESSION->$attr + 1;
 } else {
     $SESSION->$attr = 1;
+    echo " $attr was null";
 }
 
-echo " $attr is now " . $SESSION->$attr;
+echo " -> " . $SESSION->$attr;
 

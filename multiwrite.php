@@ -17,8 +17,6 @@ $PAGE->set_title($strheading);
 $PAGE->set_heading($strheading);
 $PAGE->navbar->add(get_string('pluginname', 'tool_sessionbreaker'), $PAGE->url);
 
-\core\session\manager::write_close();
-
 echo $OUTPUT->header();
 
 echo "<p>The session_handler_class is " . $CFG->session_handler_class . "</p>";
