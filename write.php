@@ -29,5 +29,9 @@ if (isset($SESSION->$attr)) {
     echo " $attr was null";
 }
 
+// This exposes core race condition MDL-84070 but you need a clean set of
+// no preferences and multiple requests with cached prefs writing to prefs
+set_user_preference("tool_sessbreak_$attr", $SESSION->$attr);
+
 echo " -> " . $SESSION->$attr;
 
